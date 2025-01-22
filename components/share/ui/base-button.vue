@@ -54,7 +54,7 @@ const buttonClass = computed(() => [{ "base-button_primary": props.btnType === "
 
   &:active {
     background-color: var(--accent-dark-color);
-    transform: scale(0.98);
+    // transform: scale(0.98);
   }
 
   &:disabled {

@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <transition name="preloader">
-      <preloader-block class="app__preloader" :class="preloaderClass" />
+      <preloader-block v-if="isLoadingWebsite" class="app__preloader" />
     </transition>
     <NuxtPage />
   </div>
@@ -9,8 +9,6 @@
 
 <script setup lang="ts">
 const isLoadingWebsite = ref<boolean>(true);
-
-const preloaderClass = computed(() => [{ app__preloader_hidden: !isLoadingWebsite.value }]);
 
 onMounted(() => {
   isLoadingWebsite.value = false;
@@ -28,10 +26,23 @@ onMounted(() => {
     right: 0;
     bottom: 0;
     z-index: 1000;
+  }
+}
 
-    &_hidden {
-      display: none;
-    }
+.preloader {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity 0.2s;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+  }
+
+  &-enter-to,
+  &-leave-from {
+    opacity: 1;
   }
 }
 </style>
