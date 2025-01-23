@@ -12,6 +12,7 @@ defineOptions({
 
 <style lang="scss">
 .base-container {
+  width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 }

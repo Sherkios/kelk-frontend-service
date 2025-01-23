@@ -9,6 +9,10 @@ export default defineNuxtConfig({
   alias: {
     assets: "/assets",
     components: "/components",
+    pages: "/pages",
+    layouts: "/layouts",
+    plugins: "/plugins",
+    utils: "/utils",
   },
 
   components: [
@@ -18,5 +22,11 @@ export default defineNuxtConfig({
     },
   ],
 
+  runtimeConfig: {
+    AUTH_HOST: "",
+    AUTH_PORT: "",
+  },
+
+  plugins: ["plugins/vee-validate.ts"],
   modules: ["@nuxt/eslint"],
 });

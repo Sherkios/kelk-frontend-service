@@ -12,9 +12,12 @@
     "lint:fix": "eslint --fix ."
   },
   "dependencies": {
+    "@vee-validate/nuxt": "^4.15.0",
     "nuxt": "^3.15.2",
+    "vee-validate": "^4.15.0",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.5",

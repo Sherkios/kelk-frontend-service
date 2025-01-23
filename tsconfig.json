@@ -2,11 +2,14 @@
   // https://nuxt.com/docs/guide/concepts/typescript
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "types": ["nuxt"],
+    "types": ["nuxt", "@nuxt/types"],
     "baseUrl": ".",
     "paths": {
       "assets/*": ["./assets/*"],
-      "components/": ["./components/"]
+      "components/": ["./components/"],
+      "pages/*": ["./pages/*"],
+      "utils/*": ["./utils/*"],
+      "layouts/*": ["./layouts/*"]
     }
   },
   "exclude": ["eslint.config.js"]

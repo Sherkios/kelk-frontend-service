@@ -54,6 +54,7 @@ export default withNuxt(
 
   {
     rules: {
+      "no-undef": "off",
       "vue/block-order": [
         "error",
         {
