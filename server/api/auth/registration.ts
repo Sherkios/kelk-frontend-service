@@ -1,3 +1,5 @@
+import { isNuxtError } from "nuxt/app";
+
 export default defineEventHandler(async event => {
   const { login, email, password } = await readBody(event);
 
@@ -14,5 +16,8 @@ export default defineEventHandler(async event => {
     return data;
   } catch (error) {
     console.log(error);
+    if (isNuxtError(error)) {
+      return error.data;
+    }
   }
 });
