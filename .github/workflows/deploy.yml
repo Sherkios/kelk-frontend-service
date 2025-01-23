@@ -1,0 +1,59 @@
+# name: Deploy Pipeline
+
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
+#     types:
+#       - closed
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     if: github.ref == 'refs/heads/main'
+#     steps:
+#       # Проверка кода
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+
+#       # Настройка SSH-агента и добавление приватного ключа
+#       - name: Set up SSH agent
+#         run: |
+#           mkdir -p ~/.ssh
+#           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+#           chmod 600 ~/.ssh/id_rsa
+#           eval $(ssh-agent -s)
+#           ssh-add ~/.ssh/id_rsa
+
+#       # Добавление сервера в список известных хостов
+#       - name: Add server to known hosts
+#         run: |
+#           mkdir -p ~/.ssh
+#           ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
+#       - name: drop docker code to server
+#         run: |
+#           ssh -o StrictHostKeyChecking=no kelk@${{ secrets.SERVER_IP }} << EOF
+#             cd /www/wwwroot/kelk.imugor.ru/kelk-auth-service
+#             docker-compose down --remove-orphans
+#             docker network prune -f
+#           EOF
+
+#       - name: Pull code to serverr
+#         run: |
+#           ssh -o StrictHostKeyChecking=no kelk@${{ secrets.SERVER_IP }} << EOF
+#             cd /www/wwwroot/kelk.imugor.ru/kelk-auth-service
+#             git pull origin main
+#           EOF
+
+#       - name: Deploy to server
+#         run: |
+#           ssh -o StrictHostKeyChecking=no kelk@${{ secrets.SERVER_IP }} << EOF
+#             cd /www/wwwroot/kelk.imugor.ru/kelk-auth-service
+#             docker-compose up -d --build
+
+#         env:
+#           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}

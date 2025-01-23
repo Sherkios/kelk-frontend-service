@@ -1,0 +1,58 @@
+name: Build Pipeline
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+    types:
+      - opened
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Виртуальная машина для выполнения пайплайна
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3 # Клонирование репозитория
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22 # Укажите версию Node.js
+
+      - name: run install
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: run install
+        run: npm install
+
+      - name: Run lint
+        run: npm run lint
+
+  # test:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: run install
+  #       run: npm install
+
+  #     - name: Run tests
+  #       run: npm run test:exit
