@@ -66,17 +66,17 @@ const [email] = defineField("email");
 const [password] = defineField("password");
 const [repeatPassword] = defineField("repeatPassword");
 
+const { registration } = useAuthApi();
 const onSubmit = handleSubmit(async () => {
-  const data = await useFetch("/api/auth/registration", {
-    method: "post",
-    body: {
-      login,
-      email,
-      password,
-    },
+  const data = await registration({
+    login: login.value,
+    email: email.value,
+    password: password.value,
   });
 
-  console.log("form values", data);
+  const config = useRuntimeConfig();
+
+  console.log("form values", data, config);
 });
 </script>
 
@@ -92,6 +92,7 @@ const onSubmit = handleSubmit(async () => {
   &__block {
     max-width: 540px;
     width: 100%;
+    // background-color: rgba($color: #000000, $alpha: 0.5);
   }
   &__form {
     display: flex;

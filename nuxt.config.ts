@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     layouts: "/layouts",
     plugins: "/plugins",
     utils: "/utils",
+    composables: "/composables",
   },
 
   components: [
@@ -22,9 +23,15 @@ export default defineNuxtConfig({
     },
   ],
 
+  typescript: {
+    typeCheck: true,
+  },
+
   runtimeConfig: {
-    AUTH_HOST: "",
-    AUTH_PORT: "",
+    public: {
+      AUTH_HOST: "",
+      AUTH_PORT: "",
+    },
   },
 
   plugins: ["plugins/vee-validate.ts"],

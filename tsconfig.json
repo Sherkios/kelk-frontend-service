@@ -9,7 +9,10 @@
       "components/": ["./components/"],
       "pages/*": ["./pages/*"],
       "utils/*": ["./utils/*"],
-      "layouts/*": ["./layouts/*"]
+      "layouts/*": ["./layouts/*"],
+      "composables/*": ["./composables/*"],
+      "plugins/*": ["./plugins/*"],
+      "types/*": ["./types/*"]
     }
   },
   "exclude": ["eslint.config.js"]
