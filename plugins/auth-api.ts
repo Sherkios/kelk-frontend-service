@@ -7,7 +7,5 @@ export default defineNuxtPlugin(nuxtApp => {
     baseURL: `${$config.public.AUTH_HOST}:${$config.public.AUTH_PORT}`,
   });
 
-  console.log("axios:", api, $config);
-
   nuxtApp.provide("authApi", api);
 });

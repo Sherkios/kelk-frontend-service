@@ -7,7 +7,7 @@ export default function useAuthApi() {
 
   const registration = async (data: IRegister) => {
     try {
-      const result = await $authApi.post("/account/register", {
+      const result = await $authApi.post("/auth/registration", {
         ...data,
       });
 

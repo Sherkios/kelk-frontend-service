@@ -10,6 +10,7 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 import withNuxt from "./.nuxt/eslint.config.mjs";
+import { getRouteRules } from "nuxt/app";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -124,6 +125,11 @@ export default withNuxt(
             "type",
           ],
           "pathGroups": [
+            {
+              pattern: "*",
+              group: "external",
+              position: "before",
+            },
             {
               pattern: "assets/**",
               group: "external",

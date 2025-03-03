@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     plugins: "/plugins",
     utils: "/utils",
     composables: "/composables",
+    decorators: "/decorators",
   },
 
   components: [
@@ -34,6 +35,6 @@ export default defineNuxtConfig({
     },
   },
 
-  plugins: ["plugins/vee-validate.ts"],
-  modules: ["@nuxt/eslint"],
+  plugins: ["~/plugins/vee-validate.ts"],
+  modules: ["@nuxt/eslint", "@nuxtjs/storybook"],
 });

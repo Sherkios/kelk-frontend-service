@@ -37,7 +37,9 @@ const buttonClass = computed(() => [{ "base-button_primary": props.btnType === "
 .base-button {
   padding: var(--button-padding);
 
-  font-size: 1rem;
+  display: flex;
+
+  gap: 4px;
 
   color: var(--white);
   background-color: var(--accent-color);
@@ -46,6 +48,7 @@ const buttonClass = computed(() => [{ "base-button_primary": props.btnType === "
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 1rem;
 
   &:hover {
     background-color: var(--accent-hover-color);
