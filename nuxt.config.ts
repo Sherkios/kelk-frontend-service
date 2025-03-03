@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     utils: "/utils",
     composables: "/composables",
     decorators: "/decorators",
+    helpers: "/helpers",
   },
 
   components: [

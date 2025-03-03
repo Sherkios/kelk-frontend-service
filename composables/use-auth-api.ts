@@ -1,4 +1,4 @@
-import type { AxiosInstance } from "axios";
+import { isAxiosError, type AxiosInstance } from "axios";
 import type { IRegister } from "types/auth-api-types";
 
 export default function useAuthApi() {
@@ -13,6 +13,9 @@ export default function useAuthApi() {
 
       return result.data;
     } catch (error) {
+      if (isAxiosError(error)) {
+        return error.response?.data;
+      }
       console.log(error);
     }
   };

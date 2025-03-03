@@ -1,5 +1,5 @@
 <template>
-  <button class="base-button" :class="buttonClass" :disabled :type>
+  <button class="base-button" :class="buttonClass" :disabled="isDisabled" :type>
     <div v-if="$slots['base-button-left']" class="base-button__left">
       <slot name="base-button-left"></slot>
     </div>
@@ -22,13 +22,17 @@ const props = withDefaults(
     disabled?: boolean;
     type?: "button" | "submit" | "reset";
     btnType?: "primary";
+    isLoading?: boolean;
   }>(),
   {
     disabled: false,
+    isLoading: false,
     type: "button",
     btnType: "primary",
   },
 );
+
+const isDisabled = computed(() => props.disabled || props.isLoading);
 
 const buttonClass = computed(() => [{ "base-button_primary": props.btnType === "primary" }]);
 </script>
@@ -38,8 +42,8 @@ const buttonClass = computed(() => [{ "base-button_primary": props.btnType === "
   padding: var(--button-padding);
 
   display: flex;
-
   gap: 4px;
+  justify-content: center;
 
   color: var(--white);
   background-color: var(--accent-color);

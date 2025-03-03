@@ -15,5 +15,6 @@
       "types/*": ["./types/*"]
     }
   },
-  "exclude": ["eslint.config.js"]
+
+  "exclude": ["./eslint.config.js"]
 }

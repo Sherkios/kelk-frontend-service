@@ -10,6 +10,7 @@
       :placeholder
       class="base-input__input"
       :class="inputClass"
+      @input="onInput"
     />
 
     <template v-if="error" #input-field-error>{{ error }}</template>
@@ -41,13 +42,28 @@ const model = defineModel<string>();
 
 const inputClass = computed(() => {
   return {
-    "base-input__input_error": props.error,
+    "base-input__input_error": isError.value,
   };
 });
+
+const errorRef = toRef(() => props.error);
+const isError = ref<boolean>(Boolean(errorRef.value));
+watch(errorRef, () => {
+  if (errorRef.value !== "") {
+    isError.value = true;
+  } else {
+    isError.value = false;
+  }
+});
+
+const onInput = () => {
+  isError.value = false;
+};
 </script>
 
 <style scoped lang="scss">
 .base-input {
+  width: 100%;
   &__input {
     appearance: none;
     width: 100%;

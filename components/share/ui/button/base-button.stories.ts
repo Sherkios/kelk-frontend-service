@@ -6,6 +6,7 @@ import { centerDecorator } from "decorators/decorators";
 const meta: Meta<typeof BaseButton> = {
   component: BaseButton,
   decorators: [centerDecorator],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -20,6 +21,13 @@ export const Primary: Story = {
 };
 
 export const Disabled: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: "Используется во время недоступности действия",
+      },
+    },
+  },
   args: {
     default: "Не доступно",
     disabled: true,

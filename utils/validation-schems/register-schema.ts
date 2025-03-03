@@ -2,6 +2,8 @@ import * as yup from "yup";
 
 const registerSchema = yup.object().shape({
   login: yup.string().required("Логин обязателен"),
+  name: yup.string().required("Имя обязательно"),
+  lastName: yup.string().required("Фамилия обязательно"),
   email: yup
     .string()
     .email("Некорректный email")
