@@ -10,17 +10,16 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 import withNuxt from "./.nuxt/eslint.config.mjs";
+import { getRouteRules } from "nuxt/app";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const gitignorePath = path.resolve(__dirname, ".gitignore");
 
 export default withNuxt(
-  ...pluginVue.configs["flat/essential"],
-
   pluginJs.configs.recommended,
-
-  // tseslint.configs.recommended,
+  // ...tseslint.configs.recommended,
+  ...pluginVue.configs["flat/recommended"],
 
   includeIgnoreFile(gitignorePath),
 
@@ -54,6 +53,8 @@ export default withNuxt(
 
   {
     rules: {
+      "no-undef": "off",
+      "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
       "vue/block-order": [
         "error",
         {
@@ -110,6 +111,12 @@ export default withNuxt(
       "vue/v-slot-style": ["error", "shorthand"],
       "vue/component-name-in-template-casing": ["error", "kebab-case"],
       "vue/custom-event-name-casing": ["error", "kebab-case"],
+      "vue/no-unused-vars": [
+        "error",
+        {
+          ignorePattern: "^_",
+        },
+      ],
       // "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
       "eslintPluginImport/order": [
         "error",
@@ -123,6 +130,11 @@ export default withNuxt(
             "type",
           ],
           "pathGroups": [
+            {
+              pattern: "*",
+              group: "external",
+              position: "before",
+            },
             {
               pattern: "assets/**",
               group: "external",
