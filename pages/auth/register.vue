@@ -116,6 +116,7 @@ const onSubmit = handleSubmit(async () => {
 
   let isError = false;
 
+  // TODO  вынести в отделную функцию или composable
   if (isValidateError<IRegister>(data)) {
     isError = true;
     const errors = data.errors.value;
